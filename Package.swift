@@ -5,20 +5,23 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftComposable",
-		platforms: [
-			.iOS(.v13)
-		],
+    platforms: [
+        .iOS(.v13),
+    ],
     products: [
         .library(
             name: "SwiftComposable",
-            targets: ["SwiftComposable"]),
+            targets: ["SwiftComposable"]
+        ),
     ],
     targets: [
         .target(
             name: "SwiftComposable",
-            dependencies: []),
+            dependencies: []
+        ),
         .testTarget(
             name: "SwiftComposableTests",
-            dependencies: ["SwiftComposable"]),
+            dependencies: ["SwiftComposable"]
+        ),
     ]
 )
