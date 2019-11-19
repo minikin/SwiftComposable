@@ -12,3 +12,12 @@ extension Publisher where Failure == Never {
         Effect(publisher: eraseToAnyPublisher())
     }
 }
+
+extension Publisher {
+    func hush() -> Effect<Output> {
+        map(Optional.some)
+            .replaceError(with: nil)
+            .compactMap { $0 }
+            .eraseToEffect()
+    }
+}

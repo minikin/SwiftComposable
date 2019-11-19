@@ -29,25 +29,24 @@ extension Effect {
 }
 
 extension Effect {
-  static func async(
-    work: @escaping (@escaping (Output) -> Void) -> Void
-  ) -> Effect {
-    return Deferred {
-      Future { callback in
-        work { output in
-          callback(.success(output))
-        }
-      }
-    }.eraseToEffect()
-  }
+    static func async(
+        work: @escaping (@escaping (Output) -> Void) -> Void
+    ) -> Effect {
+        Deferred {
+            Future { callback in
+                work { output in
+                    callback(.success(output))
+                }
+            }
+        }.eraseToEffect()
+    }
 }
 
-
 extension Effect {
-  public static func sync(work: @escaping () -> Output) -> Effect {
-    return Deferred {
-			Just(work())
+    public static func sync(work: @escaping () -> Output) -> Effect {
+        Deferred {
+            Just(work())
+        }
+        .eraseToEffect()
     }
-    .eraseToEffect()
-  }
 }
