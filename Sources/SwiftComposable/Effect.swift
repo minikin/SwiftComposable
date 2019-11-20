@@ -9,9 +9,10 @@ import Combine
 
 public struct Effect<Output>: Publisher {
     public typealias Failure = Never
-
     let publisher: AnyPublisher<Output, Failure>
+}
 
+extension Effect {
     public func receive<S>(
         subscriber: S
     ) where S: Subscriber, Failure == S.Failure, Output == S.Input {

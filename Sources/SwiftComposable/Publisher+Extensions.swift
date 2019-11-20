@@ -14,7 +14,7 @@ extension Publisher where Failure == Never {
 }
 
 extension Publisher {
-    func hush() -> Effect<Output> {
+    public func hush() -> Effect<Output> {
         map(Optional.some)
             .replaceError(with: nil)
             .compactMap { $0 }
